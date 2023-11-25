@@ -1,0 +1,27 @@
+
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-keyring
+pkgver=20231125
+pkgrel=1
+pkgdesc='Eshanized OS GPG keyring'
+arch=('any')
+url='http://eshanizedos.github.io/'
+license=('GPL')
+install="${pkgname}.install"
+source=('Makefile'
+        'eshanizedos.gpg'
+        'eshanizedos-revoked'
+        'eshanizedos-trusted')
+validpgpkeys=('0D15E28FEFF469C07DED684ED544CA374EE354F6')
+sha256sums=(
+        'ba8e8da49f9559bf0710c080b9d6b82d051bbb1c1e17b709a58a41fd46de5c4d'
+        '5267e0ae516969b6487d017a12f6da464f60d8ed688483e5252fb85e627e649f'
+        'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        '83bbc86f72b4f2f1b03da05229bbafaf34901bf95c0f334848cf12c73ec9ff28'
+        )
+
+package() {
+	cd "${srcdir}"
+	make PREFIX=/usr DESTDIR=${pkgdir} install
+}
