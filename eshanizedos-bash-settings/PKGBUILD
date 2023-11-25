@@ -1,0 +1,25 @@
+
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-bash-settings
+pkgver=1.0.0
+pkgrel=1
+org=eshanizedos
+pkgdesc="Eshanized OS Bash Settings"
+arch=(any)
+url="https://github.com/$org/$pkgname"
+license=('GPL')
+depends=('bash'
+	'bash-completion'
+	'find-the-command-git'
+	'eshanizedos-starship-config'
+	'ugrep')
+makedepends=('git')
+source=('bashrc' 'bashrc-setup.desktop')
+sha256sums=('730cd7abbeaf9ced87a2bb83088c618406968309e80e3a34eae6628a6ad21973'
+	'4f7d5eeaf232c76acec004ffbe2693b1a33f2dba4887d1dfb26b934cca1367a4')
+
+package() {
+	install -D -m644 bashrc "$pkgdir/etc/skel/.eshanizedos_bashrc"
+	install -D -m644 bashrc-setup.desktop "$pkgdir/etc/skel/.config/autostart/bashrc-setup.desktop"
+}

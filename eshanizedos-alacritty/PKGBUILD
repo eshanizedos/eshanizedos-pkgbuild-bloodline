@@ -1,0 +1,28 @@
+
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-alacritty-settings
+_pkgname=eshanizedos-alacritty-settings
+_destname1="/etc/skel/.config/alacritty/"
+_licensedir="/usr/share/eshanizedos/licenses/"
+_org="eshanizedos"
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Eshanized OS Alacritty Config"
+arch=('any')
+url="https://github.com/$_org/$_pkgname"
+license=('GPL3')
+makedepends=('git')
+depends=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/${_org}/${_pkgname}.git")
+sha256sums=('SKIP')
+install='eshanizedos-alacritty-settings.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+}
