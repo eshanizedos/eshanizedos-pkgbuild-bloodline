@@ -1,0 +1,18 @@
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-starship-config
+org=eshanizedos
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Eshanized OS Staarship Config!"
+arch=(any)
+url="https://github.com/$org/$pkgname"
+license=('MIT')
+depends=('starship')
+makedepends=('git')
+source=('starship.toml')
+sha256sums=('SKIP')
+
+package() {
+	install -D -m644 starship.toml "$pkgdir/etc/skel/.config/starship.toml"
+}
