@@ -1,0 +1,39 @@
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-fish-settings
+org=eshanizedos
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Eshanized OS Fish Config!"
+arch=(any)
+url="https://github.com/$org/$pkgname"
+license=('MIT')
+depends=('bat'
+	'eza'
+	'expac'
+	'find-the-command-git'
+	'fish'
+	'fish-autopair'
+	'fzf'
+	'eshanizedos-starship'
+	'pkgfile'
+	'tealdeer'
+	'ugrep')
+makedepends=('git')
+source=("eshanizedos-fish-completions-update.service"
+	"config.fish"
+	"https://raw.githubusercontent.com/franciscolourenco/done/master/conf.d/done.fish")
+sha256sums=('SKIP'
+	'SKIP'
+	'SKIP')
+
+package() {
+	cd "$srcdir" || exit
+	install -D -m644 config.fish "$pkgdir"/etc/skel/.config/fish/config.fish
+	install -Dm0644 eshanizedos-fish-completions-update.service "$pkgdir/usr/lib/systemd/user/eshanizedos-fish-completions-update.service"
+	install -D -m644 done.fish "$pkgdir"/etc/skel/.config/fish/conf.d/done.fish
+
+	# Workaround for mcfly complaining about missing history
+	mkdir -p "$pkgdir"/etc/skel/.local/share/fish
+	touch "$pkgdir"/etc/skel/.local/share/fish/fish_history
+}

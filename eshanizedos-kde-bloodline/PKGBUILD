@@ -22,8 +22,7 @@ package() {
     cp -rf $srcdir/$pkgname/etc $pkgdir
     install -d $pkgdir/usr
     cp -rf $srcdir/$pkgname/usr $pkgdir
-	depends=('eshanizedos-desktop-settings'
-		'eshanizedos-fish-config'
+	depends=('eshanizedos-fish-config'
 		'eshanizedos-wallpapers-bloodline'
 		'ksysguard'
 		'kvantum'
