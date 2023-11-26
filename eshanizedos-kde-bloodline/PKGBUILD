@@ -12,15 +12,16 @@ source=("git+$url.git")
 sha256sums=('SKIP')
 pkgdesc='Eshanized OS KDE Blood Line'
 install=$pkgname.install
+makedepends=(git)
 provides=('eshanizedos-kde-bloodline')
 conflicts=('eshanizedos-kde-bloodline')
 replaces=('eshanizedos-kde-bloodline')
 
 package() {
-	install -d "$pkgdir"/etc
-	cp -rf "$srcdir"/$pkgname-$pkgver/etc "$pkgdir"
-	install -d "$pkgdir"/usr
-	cp -rf "$srcdir"/$pkgname-$pkgver/usr "$pkgdir"
+	install -d $pkgdir/etc
+    cp -rf $srcdir/$pkgname/etc $pkgdir
+    install -d $pkgdir/usr
+    cp -rf $srcdir/$pkgname/usr $pkgdir
 	depends=('eshanizedos-desktop-settings'
 		'eshanizedos-fish-config'
 		'eshanizedos-wallpapers-bloodline'
