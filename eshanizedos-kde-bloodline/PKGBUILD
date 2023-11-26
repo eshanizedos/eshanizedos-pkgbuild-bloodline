@@ -1,0 +1,35 @@
+
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-kde-bloodline
+pkgver=1.0.0
+pkgrel=1
+org=eshanizedos
+arch=('any')
+url="https://github.com/$org/$pkgname"
+license=('GPL')
+source=("$pkgname-$pkgver.tar.gz::$url/-/archive/$pkgver/$pkgname-$pkgver.tar.gz")
+sha256sums=('SKIP')
+pkgdesc='Eshanized OS KDE Blood Line'
+install=$pkgname.install
+provides=('eshanizedos-kde-bloodline')
+conflicts=('eshanizedos-kde-bloodline')
+replaces=('eshanizedos-kde-bloodline')
+
+package() {
+	install -d "$pkgdir"/etc
+	cp -rf "$srcdir"/$pkgname-$pkgver/etc "$pkgdir"
+	install -d "$pkgdir"/usr
+	cp -rf "$srcdir"/$pkgname-$pkgver/usr "$pkgdir"
+	depends=('eshanizedos-desktop-settings'
+		'eshanizedos-fish-config'
+		'eshanizedos-wallpapers-bloodline'
+		'ksysguard'
+		'kvantum'
+		'plasma5-applets-window-appmenu'
+		'plasma5-applets-window-buttons'
+		'plasma5-applets-window-title'
+		'plasma5-applets-betterinlineclock-git'
+		'plasma5-wallpapers-blurredwallpaper'
+		'plasma5-themes-sweet-full-git')
+}
