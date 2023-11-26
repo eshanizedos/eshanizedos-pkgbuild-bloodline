@@ -1,0 +1,32 @@
+
+# Maintainer: Eshan Roy <src.eshan@gmail.com>
+
+pkgname=eshanizedos-grub-bloodline
+_pkgname=eshanizedos-grub-bloodline
+_org=eshanizedos
+destinationdir1="/usr/share/grub/themes/Vimix"
+destinationdir2="/boot/grub/themes/Vimix"
+_licensedir="/usr/share/eshanizedos/licenses/"
+pkgver=20230305
+pkgrel=03
+pkgdesc="Eshanized OS Grub Theme Config-Vimix"
+arch=(any)
+url="https://github.com/$_org/$_pkgname"
+license=('GPL3')
+optdepends=('grub-customizer')
+makedepends=('git')
+depends=()
+install=eshanizedos-grub-bloodline.install
+conflicts=('grub2-theme-vimix-git' 'eshanizedos-grub-bloodline' 'grub-theme-vimix')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::git+${url})
+md5sums=('SKIP')
+package() {
+	mkdir -p "${pkgdir}${_licensedir}${_pkgname}"
+	cp -r "${srcdir}/${_pkgname}/"LICENSE "${pkgdir}${_licensedir}${_pkgname}/LICENSE"
+	mkdir -p "${pkgdir}${destinationdir1}"
+	cp -r "${srcdir}/${_pkgname}/${destinationdir1}/"* "${pkgdir}${destinationdir1}"
+	mkdir -p "${pkgdir}${destinationdir2}"
+	cp -r "${srcdir}/${_pkgname}/${destinationdir2}/"* "${pkgdir}${destinationdir2}"
+}
